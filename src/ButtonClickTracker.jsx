@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 const ButtonClickTracker = () => {
   const buttons = ['Button1', 'Button2', 'Button3'];
 
-  const [count, setCount] = useState(Array(buttons.length).fill(0));
+  //   const [count, setCount] = useState(Array(buttons.length).fill(0));
+
+  const [count, setCount] = useState(buttons.map(() => 0)); // [0,0,0]
 
   function handleClick(index) {
-    const newCount = [...count];
-    newCount[index] += 1;
-    setCount(newCount);
+    setCount((prev) => {
+      const updated = [...prev];
+      updated[index]++;
+      return updated;
+    });
   }
 
   return (
